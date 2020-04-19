@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+        //move varialbes
     public CharacterController controller;
 
     public float walkSpeed = 8.0f;
@@ -11,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.81f;
     public float jumpHeight = 3.0f;
 
+    //gravity variables
     public Transform groundCheck;
     public float groundDistance = .4f;
     public LayerMask groundMask;
@@ -18,10 +20,11 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
 
-
     // Update is called once per frame
     void Update()
     {
+
+        #region Movement
         //is grounded =                   ground check    is    ground distance from ground 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if(isGrounded && velocity.y < 0)
@@ -54,5 +57,6 @@ public class PlayerMovement : MonoBehaviour
         //apply gravity
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+        #endregion
     }
 }
