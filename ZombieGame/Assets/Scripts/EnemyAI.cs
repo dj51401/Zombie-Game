@@ -7,7 +7,9 @@ public class EnemyAI : MonoBehaviour
 
     public float moveSpeed = 5.0f;
     public float gravity = 10;
-    public float health = 100;
+    public int enemyHealth = 100;
+    public static float playerHealth = 100;
+    public int damage = 20;
 
     CharacterController controller;
     Transform target;
@@ -34,9 +36,9 @@ public class EnemyAI : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
 
-        if (health <= 0)
+        if (enemyHealth <= 0)
         {
-            health = 0;
+            enemyHealth = 0;
             Destroy(gameObject);
         }
 
@@ -46,7 +48,7 @@ public class EnemyAI : MonoBehaviour
     {
         if(collision.gameObject.tag == "Bullets")
         {
-            health -= 25;
+            enemyHealth -= 25;
             Destroy(collision.gameObject);
         }
     }
